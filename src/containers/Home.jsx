@@ -17,8 +17,8 @@ const Home = () => {
   return initialState.length === 0 ? (
     <h1>Loading...</h1>
   ) : (
-    <div className="App">
-      <Header />
+    <>
+      {/* <Header /> en desuso desde que aplicamos el component Layout */}
       <Search />
 
       {initialState.mylist.length > 0 && (
@@ -47,8 +47,8 @@ const Home = () => {
         </Carousel>
       </Categories>
 
-      <Footer />
-    </div>
+      {/* <Footer /> en desuso desde que aplicamos el component Layout */}
+    </>
   );
 };
 

@@ -1,10 +1,21 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "../containers/Home.jsx";
+import Login from "../containers/Login.jsx";
+import Register from "../containers/Register.jsx";
+import NotFound from "../containers/NotFound.jsx";
+import Layout from "../components/Layout.jsx";
 
 const App = () => (
   <BrowserRouter>
-    <Route exact path="/" component={Home}></Route>
+    <Layout>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route extac path="/register" component={Register} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   </BrowserRouter>
 );
 
