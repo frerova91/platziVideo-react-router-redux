@@ -4,7 +4,7 @@ import Search from "../components/Search.jsx";
 import Categories from "../components/Categories.jsx";
 import Carousel from "../components/Carousel.jsx";
 import CarouselItems from "../components/CarouselItems.jsx";
-import useInitialState from "../hooks/useInitialState.js";
+//import useInitialState from "../hooks/useInitialState.js";
 
 import "../assets/styles/App.scss";
 
@@ -21,7 +21,7 @@ const Home = ({ myList, trends, originals }) => {
       {myList.length > 0 && (
         <Categories title="Mi lista">
           <Carousel>
-            {trends.map(item => (
+            {myList.map(item => (
               <CarouselItems key={item.id} {...item} />
             ))}
           </Carousel>

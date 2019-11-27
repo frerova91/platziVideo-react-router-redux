@@ -66,9 +66,9 @@
 
     Con esto preparamos a nuestra app para recivir su estado inicial y con conect() vamos a poder extraer la informacionpara presentarla en la aplicacion.
 
-    4.- ahora vamos a ir al componente padre de nuestra app (determinado por la ruto "/") en este caso es Home y aqui vamos import connect para la final del documento conectarlo con el estado de redux.
+    4.- ahora vamos a ir al componente padre de nuestra app (determinado por la ruta "/") en este caso es Home y aqui vamos import connect para la final del documento conectarlo con el estado de redux.
 
-        definimos una contante que traera cada uno de los elementos del estado y solo hay que traer lo que sean necesarios en este caso myList, trends y originals.
+        definimos una constante que traera cada uno de los elementos del estado y solo hay que traer lo que sean necesarios en este caso myList, trends y originals.
 
         const mapStateToProps = state =>{
             return{
@@ -79,5 +79,13 @@
         }
 
         definimos un nuevo export como:
-        export default connect(props, actions)(Home)
+        //export default connect(props, actions)(Home) ejemplo.
         export default connect(mapStateToProps, null)(Home)
+
+# 9. Para manejar ahora el flujo de la informacion de nuestra aplicacion vamos a trabajar ahora con los actiosn y los reducers, en particular en la lista de los items.
+
+    1.- vamos a actions a crear un index.js el primero que se encarga de describir la informacion que vamos a crear y pasar un objeto que va ir dentro de los reducer para que luego tome la accion para evaluar como lo va a guardar en el estado.
+
+    2.- Actualizamos index.js en reducers para que utilize lo que da los actions.
+
+    3.-Ahora vamos a carouselItems y conectamos con los actions y reducers.
