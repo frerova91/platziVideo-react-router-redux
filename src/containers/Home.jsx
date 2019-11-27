@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header.jsx";
+import { connect } from "react-redux";
 import Search from "../components/Search.jsx";
 import Categories from "../components/Categories.jsx";
 import Carousel from "../components/Carousel.jsx";
 import CarouselItems from "../components/CarouselItems.jsx";
-import Footer from "../components/Footer.jsx";
 import useInitialState from "../hooks/useInitialState.js";
 
 import "../assets/styles/App.scss";
 
-const API = "http://localhost:3000/initialState";
+//const API = "http://localhost:3000/initialState"; desde que se empezo a utilizar redux.
 
-const Home = () => {
-  const initialState = useInitialState(API);
-
-  return initialState.length === 0 ? (
-    <h1>Loading...</h1>
-  ) : (
+const Home = ({ myList, trends, originals }) => {
+  //const initialState = useInitialState(API); desde que se empezo a utilizar redux.
+  // return initialState.length === 0 ? ( <h1>Loading...</h1>) : desde que se empezo a utilizar redux.
+  return (
     <>
       {/* <Header /> en desuso desde que aplicamos el component Layout */}
       <Search />
 
-      {initialState.mylist.length > 0 && (
+      {myList.length > 0 && (
         <Categories title="Mi lista">
           <Carousel>
-            {initialState.trends.map(item => (
+            {trends.map(item => (
               <CarouselItems key={item.id} {...item} />
             ))}
           </Carousel>
@@ -33,7 +30,7 @@ const Home = () => {
 
       <Categories title="Tendencias">
         <Carousel>
-          {initialState.trends.map(item => (
+          {trends.map(item => (
             <CarouselItems key={item.id} {...item} />
           ))}
         </Carousel>
@@ -41,7 +38,7 @@ const Home = () => {
 
       <Categories title="PlatziVideo :)">
         <Carousel>
-          {initialState.trends.map(item => (
+          {originals.map(item => (
             <CarouselItems key={item.id} {...item} />
           ))}
         </Carousel>
@@ -52,4 +49,13 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals
+  };
+};
+
+export default connect(mapStateToProps, null)(Home);
+// export default Home; desde que se empezo a utilizar redux.

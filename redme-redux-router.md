@@ -36,3 +36,48 @@
     .- Por lo contrario si usamo <Link to=""path></link> es una buena practica de react y no cargara otra vez la pagina de forma inecesaria.
 
     .- ahora vamos a hacerle los cambios a nuestros componentes.
+
+# 7. En este paso ya entendido lo basico de Redex y que es vamos a proceder a instalarlo:
+
+    npm install redux react-redux --save
+
+    redux: contiene todo la logica de como trabajamos con el.
+    react-redux: nos va  a ayudar a implementarlo mas facil en el proyecto.
+
+    1.- Vamos a proceder a crear 2 carpeta en src actions y reducers, y en cada una crear un index.js para empezar el proyecto.
+
+    2.- Vamos a index.js el principal del proyecto y añadimos redux y react-redux.
+
+    NOTA:"El paquete react-redux nos proporciona un Provider para poder encapsular nuestros componentes por medio de un connect para poder transmitir la información que necesitemos del store a cada componente."
+
+# 8. Creando el Store de redux para nuestra app vamos a usar el elemnto que teniamos para trabajar con nuestra fake api la vamos a mandar a nuestro proyecto para hacer un inicial state lo cual nos permitira tener esa info inicial para el proyecto y poder usarla por medio del conect().
+
+    1.- Procedamos a crear un estado inicla para redux copiando el contenido del initialstate.json y le vamos a hacerle unas modificaciones. Vamos a copiarlo en index.js como una constante para este caso en particular.
+
+    const initialState = {...................}
+
+    2.- Vamos a crear ahora un nuevo store para poder pasarselo a nuestro provider
+
+    const store = createStore(reducer, initialState);
+
+    3.- Ahora ahy que pasarselos al provider
+
+    <Provider store={store}>.....</Provider>
+
+    Con esto preparamos a nuestra app para recivir su estado inicial y con conect() vamos a poder extraer la informacionpara presentarla en la aplicacion.
+
+    4.- ahora vamos a ir al componente padre de nuestra app (determinado por la ruto "/") en este caso es Home y aqui vamos import connect para la final del documento conectarlo con el estado de redux.
+
+        definimos una contante que traera cada uno de los elementos del estado y solo hay que traer lo que sean necesarios en este caso myList, trends y originals.
+
+        const mapStateToProps = state =>{
+            return{
+               props: state.props
+               .........
+               .........
+            }
+        }
+
+        definimos un nuevo export como:
+        export default connect(props, actions)(Home)
+        export default connect(mapStateToProps, null)(Home)
