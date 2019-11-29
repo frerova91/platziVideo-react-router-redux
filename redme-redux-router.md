@@ -168,17 +168,25 @@
     .-se crea una ruta en app.js para manejar el componente y pasar por la direccion un id que sirve de referencia.
     .-en CarouselItem importamos <Link> de react-router-dom para el redireccionamiento de la pagina encapsulando la imagen de play, para que al darle click redireccione hacia el video.
 
-# 20 Configurando el Player o agregando funcionalidad.
+# 20. Configurando el Player o agregando funcionalidad.
 
     .-Debido a que nuestra app esta encapsula en los react-router somos capaces de obtener ciertas funcionalidad por medio de los props como lo es onClick={() => props.history.goBack()} para manejar el redireccionamiento. Esto nos permitira ir hacia atras en el reproductor de video pero para ellos hay que pasarle los props al componente.
 
     .- En webpack configuramos una ruta publica para poder  acceder directamente a las direcciones de los vide con su id ejem: http://localhost:8080/player/2 de otra forma nos da error debido a que usamos boundle.js y no encuetra esas rutas sin la config.
 
-# 21 Ya que estamos obteniendo el id en el componente pódemos por medio de un action pasarlo al flujo de informacion, obtenerlo con nuestro reducer y filtrar esta info para obtener cual es el elemento que necesitamos y asi tener el source del video y poder presentarlo.
+# 21. Ya que estamos obteniendo el id en el componente pódemos por medio de un action pasarlo al flujo de informacion, obtenerlo con nuestro reducer y filtrar esta info para obtener cual es el elemento que necesitamos y asi tener el source del video y poder presentarlo.
 
     .- se crea la logica para obtener el id destructurado de los parametros que biene en url
     .- se crea la logica para retornar el componente de video o notFound
     .- se crea un action y su correspondiente reducer que evaluara si en el estado inicial existe un id exactamente igual l traido con actions.payload para comprobar que hay algo que podamos reproducir algo que pertenece a la base de datos como ejemplo.
     .-usamos useEffect para obtener el id para el estado local.
 
-# Validaciones de UI
+# 22. Validaciones de UI
+
+    .- Aqui simplemente se arreglaron unos stilos css.
+    .- Ademas se agrego una validacion en search.jsx para cambiar los estilos de forma dinamica del input segun donde esta se uso un paquete llamado classnames
+    .- npm i classnames --save
+    .- se pasa un prop que indica donde modificar en este caso se paso en Home.jsx asi:
+    <Search isHome >
+
+# 23. Redux Dev Tools nos va a servir mucho para entender mejor el flujo de nuestra información en nuestra aplicación y poder realizar debugging de manera sencilla.

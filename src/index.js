@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, compose } from "redux";
 import reducer from "./reducers";
 import App from "./routes/App";
 
@@ -172,8 +172,11 @@ const initialState = {
   ]
 };
 
+//Conectando con Devtools de Redux para los navegadores firefox o chrome, de igual forma lo importamos al lado de createStore de redux.
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 //este es el store e redux
-const store = createStore(reducer, initialState);
+const store = createStore(reducer, initialState, composeEnhancers());
 
 // Render recibe 2 parametros el componente y donde lo va a mostar.
 ReactDOM.render(

@@ -16,7 +16,7 @@ const Home = ({ myList, trends, originals }) => {
   return (
     <>
       {/* <Header /> en desuso desde que aplicamos el component Layout */}
-      <Search />
+      <Search isHome />
 
       {myList.length > 0 && (
         <Categories title="Mi lista">
