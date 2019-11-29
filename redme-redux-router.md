@@ -37,7 +37,7 @@
 
     .- ahora vamos a hacerle los cambios a nuestros componentes.
 
-# 7. En este paso ya entendido lo basico de Redex y que es vamos a proceder a instalarlo:
+# 7. En este paso ya entendido lo basico de Redux y que es vamos a proceder a instalarlo:
 
     npm install redux react-redux --save
 
@@ -89,3 +89,96 @@
     2.- Actualizamos index.js en reducers para que utilize lo que da los actions.
 
     3.-Ahora vamos a carouselItems y conectamos con los actions y reducers.
+
+# 10. Finalizando reducers y eliminar favoritos agreguemos esta funcionalidad de eliminar por medio de los reducers y los actions y el componente carouselItem.
+
+    1.-Vamos a loa actions y creamos una funcion para delete.
+
+    export const deleteFavorite = payload => ({
+        type: "DELETE_FAVORITE", // cuidado con los nombres al llamr en los reducers debe ser exactam,ente los mismo
+        payload
+    });
+
+    2.- Vamos a los reducer y añadimos el case de delete.
+
+    3.- Ahora vamos al CarouselItem para implementar delete.
+
+# 11. Tal y como esta la app en este momento tenemos un bug que nos permite agregar infinitamente a la lista tarjetas vamos a corregirlo.
+
+    1.-Vamos al componente home.jsx y a agregamos un boolean que nos permitira saber qu estamos en un lista isList={true}
+
+    2.- Luego en CarouselItem agregamos la logica on un operador tenario y pasando en los props isList.
+
+# 12 Ahora vamoa crear el login necesitamos capturar la infon del usuario y luego mandarla al flujo de la info.
+
+    1.- vamos a areglar unos problemas con los estilos scss de login y search.scss
+
+    2.- vamos al componente login y vamos a capturar la data de los imputs con un hooks. vamos a crear un estado.
+
+# 13. Aqui conectaremos nuestro formulario de login con redux.
+
+    .-importamos connect y creamos el expor adecuado para redux
+    .-creamos nuestro mapDispatchToProps para usar los actions
+    .- Vamos a la carpeta de action y index.js creamos el action para hacer login.
+    .-importamos en el componente login el action loginRequest.
+    .-ahora pasamos por medio de props para pasar el form hacia el estado usarlo en el handelsubmit.
+    .- asi podemos pasar al estado la info que capturamos en el login para simular que nos logeamos.
+    .-Ahora vamos a enviar al usuario a home con una de las propiedades de react-router (history), la cual esta disponible porque encapsulamos nuestra aplicacion en el bowserRouter que se encarga de la navegacion de la app y con el metodo push nos movemos a donde sea necesario.
+    .- hay que crear nuestro reducer que se encargara de manejar la info y ponerla en el estado.
+
+# 14. Creando un Servicio para Gravatar(Servicio de almacenamiento de imagenes) creado por automatic mismo empresa de qe creo wordpress en us sitio web esta la docu para la implementacion o en npm sirve tambien aunque no es la mejor opcion. En este caso Vamos a anlizar el paquete de npm para gravatar entrando en su pagina de github y vamos a la carpeta de lib(librerias) y vemos la logica de ese unico archivo para comprender como funciona md5 y como podemos implementarlo nosotros mismos.
+
+    1.- Vamos a crear una carpeta util dentro de src la cual contendra un archivo gravatar.js que es donde tendremos nuestra logic para traer este servicio.
+
+    Nota:"md5 es un algoritmo criptografico que crea un hash a partir de un correo electronico de esta forma no almacenamos el correo sino un hash vinculado a la imagen"
+
+    2.- Instalamos gravatar: npm install md5 --save
+
+    3.- creamos una constante gravartaer la cual contendra una funcion que recibe un email, establece la ruta de la comunicacion, formatea el email para usarlo y finalmente crea el hash de gravartar.
+
+# 15. Usando Gravatar en el proyecto vamos a header.jsx y lo vamos a conectar con redux para usar el estado de nuestro usuario,
+
+    recuerda que tienes que registrarte en gravatar para usar bien la api registrando un gravatar para el correo.
+
+# 16. Validacion de Login y logOut vamos a trabajar en Header.jsx en el menu.
+
+    .-hay que crear la logica en html y la funcion handleLogout
+    .-Como estamos en redux y necesitamos trabajar con el estado tenemos que crear un action.
+    .-lo creamos e importamos en Header.jsx.
+    .-Ahora necesitamos mapear este action con un mapDispatchToProps y pasarlo como segundo argumento del export defaul connect(null,null)(componente).
+    .-Tambien tenemos que crear nuestro reducer.
+    .- recuerda tambien mapear lel estado con mapStateToProps.
+
+# 17. Register actualizanolo scss y creando validaciones.
+
+    .-Asi como lo hicimos con login lo vamos a hacer con el registro usaremos react hooks para manejar los impuuts.
+
+# 18. Register con Redux continuamos con lo anterior pero le agregamos redux a este componente.
+
+    .-conectamos con redux
+    .-creamos un action y un reducer
+    .-le pasamos los props al componente
+    .-establecemos un mpaDispatchToProps para los actions
+    .- manejamos con handleSubmit y handleImput los eventos
+    .- E inicializamos el estado local del componente con useState
+
+# 19. Aqui vamos a crear un container Player el cual tendra el metodo para la reproduccion de los videos.
+
+    .-Se crear el componente de Player con su respectivos estilos.
+    .-se crea una ruta en app.js para manejar el componente y pasar por la direccion un id que sirve de referencia.
+    .-en CarouselItem importamos <Link> de react-router-dom para el redireccionamiento de la pagina encapsulando la imagen de play, para que al darle click redireccione hacia el video.
+
+# 20 Configurando el Player o agregando funcionalidad.
+
+    .-Debido a que nuestra app esta encapsula en los react-router somos capaces de obtener ciertas funcionalidad por medio de los props como lo es onClick={() => props.history.goBack()} para manejar el redireccionamiento. Esto nos permitira ir hacia atras en el reproductor de video pero para ellos hay que pasarle los props al componente.
+
+    .- En webpack configuramos una ruta publica para poder  acceder directamente a las direcciones de los vide con su id ejem: http://localhost:8080/player/2 de otra forma nos da error debido a que usamos boundle.js y no encuetra esas rutas sin la config.
+
+# 21 Ya que estamos obteniendo el id en el componente pódemos por medio de un action pasarlo al flujo de informacion, obtenerlo con nuestro reducer y filtrar esta info para obtener cual es el elemento que necesitamos y asi tener el source del video y poder presentarlo.
+
+    .- se crea la logica para obtener el id destructurado de los parametros que biene en url
+    .- se crea la logica para retornar el componente de video o notFound
+    .- se crea un action y su correspondiente reducer que evaluara si en el estado inicial existe un id exactamente igual l traido con actions.payload para comprobar que hay algo que podamos reproducir algo que pertenece a la base de datos como ejemplo.
+    .-usamos useEffect para obtener el id para el estado local.
+
+# Validaciones de UI
