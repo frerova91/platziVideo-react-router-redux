@@ -9,6 +9,7 @@ import App from "./routes/App";
 const initialState = {
   user: {},
   playing: {},
+  search: {},
   myList: [],
   trends: [
     {
@@ -160,6 +161,19 @@ const initialState = {
       id: 13,
       slug: "tvshow-13",
       title: "NCIS: Los Angeles",
+      type: "Drama",
+      language: "English",
+      year: 2010,
+      contentRating: "16+",
+      duration: 160,
+      cover: "http://dummyimage.com/800x600.png/5472FF/ffffff",
+      description: "Vestibulum ac est lacinia nisi venenatis tristique",
+      source: "https://mdstrm.com/video/58333e214ad055d208427db5.mp4"
+    },
+    {
+      id: 133,
+      slug: "tvshow-13",
+      title: "Hardcode Originales",
       type: "Drama",
       language: "English",
       year: 2010,
