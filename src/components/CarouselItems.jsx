@@ -64,9 +64,12 @@ const CarouselItems = props => {
     </div>
   );
 };
+
 //Esta es una alternativa a lo que hace typeScript que es definir el tipo de valor que traen las variables.
 // Aunque paresca raro por convencion el propType= siempre comensara con minuscula.
 CarouselItems.propTypes = {
+  id: PropTypes.number,
+  isList: PropTypes.bool,
   cover: PropTypes.string,
   title: PropTypes.string,
   year: PropTypes.number,
