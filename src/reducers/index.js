@@ -45,10 +45,13 @@ const reducer = (state, actions) => {
       return {
         ...state,
         search:
-          state.trends.filter(items =>
-            items.title.toLowerCase().includes(actions.payload.toLowerCase())
-          ) || []
+          state.trends
+            .concat(state.originals)
+            .filter(items =>
+              items.title.toLowerCase().includes(actions.payload.toLowerCase())
+            ) || []
       };
+
     default:
       //regresamos el estado si todo falla
       return state;

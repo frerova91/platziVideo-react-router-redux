@@ -5,6 +5,8 @@ import className from "classnames";
 import Categories from "../components/Categories";
 import Carousel from "../components/Carousel";
 import CarouselItem from "../components/CarouselItems";
+import Modal from "../components/Modal";
+
 import "../assets/styles/components/Search.scss";
 
 const Search = props => {
@@ -31,13 +33,15 @@ const Search = props => {
         onChange={handleImput}
       />
       {hasSearch ? (
-        <Categories title="Resultados">
-          <Carousel>
-            {search.map((item, index) => (
-              <CarouselItem key={index} {...item} />
-            ))}
-          </Carousel>
-        </Categories>
+        <Modal>
+          <Categories title="Resultados">
+            <Carousel>
+              {search.map((item, index) => (
+                <CarouselItem key={index} {...item} />
+              ))}
+            </Carousel>
+          </Categories>
+        </Modal>
       ) : null}
     </section>
   );
